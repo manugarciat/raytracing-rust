@@ -76,7 +76,7 @@ impl std::ops::DivAssign<f64> for Vec3 {
 }
 
 // point3 is just an alias for vec3, but useful for geometric clarity in the code.
-type Point3 = Vec3;
+pub(crate) type Point3 = Vec3;
 
 // Vector Utility Functions
 impl Sub for Vec3 {
