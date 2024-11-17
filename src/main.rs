@@ -3,6 +3,7 @@ use crate::vec3::{cross, dot, unit_vector, Vec3, Point3};
 
 mod vec3;
 mod color;
+mod ray;
 // use vec3::*;
 
 fn main() {
@@ -20,7 +21,7 @@ fn main() {
             let r = i as f64 / (image_width - 1) as f64;
             let g = j as f64 / (image_height - 1) as f64;
             let b = 0.0;
-            let pixel_color = Color::new_values(r, g, b);
+            let pixel_color: Color = Color::new_values(r, g, b);
 
             write_color(pixel_color);
         }
