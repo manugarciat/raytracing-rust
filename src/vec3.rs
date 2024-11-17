@@ -1,6 +1,6 @@
 use std::ops::{Add, Div, Index, IndexMut, Mul, MulAssign, Sub};
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub struct Vec3 {
     e: [f64; 3], //no es publico
 }
