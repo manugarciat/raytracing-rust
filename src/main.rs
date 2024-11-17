@@ -1,6 +1,6 @@
 use crate::color::{write_color, Color};
 use crate::ray::Ray;
-use crate::vec3::{Point3, Vec3};
+use crate::vec3::{dot, unit_vector, Point3, Vec3};
 
 
 mod vec3;
@@ -8,8 +8,23 @@ mod color;
 mod ray;
 
 
+fn hit_sphere(center: &Point3, radius: f64, ray: &Ray) -> bool {
+    let oc: Vec3 = *center - *ray.origin();
+    let a: f64 = dot(*ray.direction(), *ray.direction());
+    let b: f64 = -2.0 * dot(*ray.direction(), oc);
+    let c: f64 = dot(oc, oc) - radius * radius;
+    let discriminant: f64 = b * b - 4.0 * a * c;
+    return discriminant >= 0.0;
+}
+
 fn ray_color(r: &Ray) -> Color {
-    Color::new_values(1.0, 0.0, 0.0)
+    if hit_sphere(&Point3::new_values(0., 0., -1.), 0.5, r) {
+        return Color::new_values(1., 0., 0.);
+    }
+    let unit_direction = unit_vector(*r.direction());
+    let a = 0.5 * (unit_direction.y() + 1.0);
+    return (1.0 - a) * Color::new_values(1.0, 1.0, 1.0)
+        + a * Color::new_values(0.5, 0.7, 1.0)
 }
 
 fn main() {

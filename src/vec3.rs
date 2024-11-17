@@ -139,6 +139,7 @@ pub fn cross(a: Vec3, b: Vec3) -> Vec3 {
                      a.x() * b.y() - a.y() * b.x())
 }
 
+/// Normaliza el vector
 pub fn unit_vector(v: Vec3) -> Vec3 {
     let l = v.length();
     return v / l;
