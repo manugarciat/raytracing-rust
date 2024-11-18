@@ -7,12 +7,12 @@ pub struct Vec3 {
 
 impl Vec3 {
     // Constructor para crear una nueva instancia de Vec3 (0,0,0)
-    pub fn new() -> Self {
+    pub fn new_zero() -> Self {
         Vec3 { e: [0.0, 0.0, 0.0] }
     }
 
     // Constructor para crear una nueva instancia de Vec3 con valores definidos
-    pub fn new_values(x: f64, y: f64, z: f64) -> Self {
+    pub fn new(x: f64, y: f64, z: f64) -> Self {
         Vec3 { e: [x, y, z] }
     }
 
@@ -134,9 +134,9 @@ pub fn dot(a: Vec3, b: Vec3) -> f64 {
 }
 
 pub fn cross(a: Vec3, b: Vec3) -> Vec3 {
-    Vec3::new_values(a.y() * b.z() - a.z() * b.y(),
-                     a.z() * b.x() - a.x() * b.z(),
-                     a.x() * b.y() - a.y() * b.x())
+    Vec3::new(a.y() * b.z() - a.z() * b.y(),
+              a.z() * b.x() - a.x() * b.z(),
+              a.x() * b.y() - a.y() * b.x())
 }
 
 /// Normaliza el vector

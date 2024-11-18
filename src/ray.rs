@@ -8,7 +8,7 @@ pub struct Ray {
 impl Ray {
 
     pub fn new() -> Self {
-        Ray { orig: Point3::new(), dir: Vec3::new() }
+        Ray { orig: Point3::new_zero(), dir: Vec3::new_zero() }
     }
 
     // Constructor para crear una nueva instancia de Vec3 con valores definidos

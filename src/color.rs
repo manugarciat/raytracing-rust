@@ -3,6 +3,9 @@ use crate::vec3::Vec3;
 pub(crate) type Color = Vec3;
 
 impl Color {
+    pub fn rgb(r: f64, g: f64, b: f64) -> Self {
+        Color::new(r, g, b)
+    }
     pub fn r(&self) -> f64 {self.x()}
     pub fn g(&self) -> f64 {self.y()}
     pub fn b(&self) -> f64 {self.z()}
