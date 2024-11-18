@@ -8,18 +8,23 @@ mod color;
 mod ray;
 
 
-fn hit_sphere(center: &Point3, radius: f64, ray: &Ray) -> bool {
+fn hit_sphere(center: &Point3, radius: f64, ray: &Ray) -> f64 {
     let oc: Vec3 = *center - *ray.origin();
     let a: f64 = dot(*ray.direction(), *ray.direction());
     let b: f64 = -2.0 * dot(*ray.direction(), oc);
     let c: f64 = dot(oc, oc) - radius * radius;
     let discriminant: f64 = b * b - 4.0 * a * c;
-    return discriminant >= 0.0;
+
+    return if discriminant < 0.0 {
+        -1.
+    } else { (-b - discriminant.sqrt()) / (2.0 * a) } // nos quedamos con el hit mas cercano
 }
 
 fn ray_color(r: &Ray) -> Color {
-    if hit_sphere(&Point3::new_values(0., 0., -1.), 0.5, r) {
-        return Color::new_values(1., 0., 0.);
+    let t = hit_sphere(&Point3::new_values(0., 0., -1.), 0.5, r);
+    if t > 0.0 {
+        let n = unit_vector(r.at(t) - Vec3::new_values(0., 0., -1.));
+        return 0.5 * Color::new_values(n.x() + 1., n.y() + 1., n.z() + 1.);
     }
     let unit_direction = unit_vector(*r.direction());
     let a = 0.5 * (unit_direction.y() + 1.0);
