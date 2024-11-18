@@ -52,3 +52,82 @@ This implementation currently includes:
 ├── images/               # Rendered output images
 ├── Cargo.toml            # Rust project dependencies
 └── README.md             # This file
+```
+
+---
+
+## 🛠️ **Setup and Build**
+
+### Prerequisites
+
+- **Rust** (Install via [rustup.rs](https://rustup.rs/))
+- A text editor or IDE like [VSCode](https://code.visualstudio.com/) or [IntelliJ Rust](https://www.jetbrains.com/rust/)
+
+### Building the Project
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/raytracing-rust.git
+   cd raytracing-rust
+
+2. Build and run:
+   ```bash
+   cargo run
+   ```
+3. Output will be saved in the `images/` folder as a `.ppm` file. Open it with an image viewer or convert it to another format using tools like GIMP or ImageMagick.
+
+---
+
+## 🌟 **Sample Output**
+
+Rendered scenes include:
+
+- Simple spheres with realistic lighting and shadows:
+  ![Sample Output](images/sample1.png)
+
+- Materials with reflections and refractions:
+  ![Sample Output](images/sample2.png)
+
+---
+
+## 🧠 **Concepts Covered**
+
+- **Ray tracing fundamentals**: Rays, spheres, and intersections.
+- **Linear algebra**: Vector and matrix operations for 3D transformations.
+- **Physics-based rendering**: Simulating realistic light behavior.
+- **Rust programming**: Leveraging safe, high-performance programming.
+
+---
+
+## 🚧 **Roadmap**
+
+Planned features include:
+
+- More complex geometries (triangles, meshes).
+- Texture mapping and procedural textures.
+- More advanced lighting models (path tracing, global illumination).
+
+---
+
+## 🙌 **Acknowledgments**
+
+This project is inspired by the excellent work of **Peter Shirley**, **Trevor David Black**, and **Steve Hollasch**. Their book, *Ray Tracing in One Weekend*, provides an approachable introduction to ray tracing.
+
+For more information, visit the [official website](https://raytracing.github.io/books/RayTracingInOneWeekend.html).
+
+---
+
+## 📜 **License**
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🤝 **Contributing**
+
+Contributions, bug reports, and feature requests are welcome! Feel free to open an issue or submit a pull request.
+
+---
+
+### 🎨 Happy Ray Tracing!
+
