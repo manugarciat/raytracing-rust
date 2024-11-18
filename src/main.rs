@@ -10,14 +10,14 @@ mod ray;
 
 fn hit_sphere(center: &Point3, radius: f64, ray: &Ray) -> f64 {
     let oc: Vec3 = *center - *ray.origin();
-    let a: f64 = dot(*ray.direction(), *ray.direction());
-    let b: f64 = -2.0 * dot(*ray.direction(), oc);
-    let c: f64 = dot(oc, oc) - radius * radius;
-    let discriminant: f64 = b * b - 4.0 * a * c;
+    let a: f64 = *ray.direction().length_squared();
+    let h: f64 = dot(*ray.direction(), oc);
+    let c: f64 = oc.length_squared() - radius * radius;
+    let discriminant: f64 = h * h - a * c;
 
     return if discriminant < 0.0 {
         -1.
-    } else { (-b - discriminant.sqrt()) / (2.0 * a) } // nos quedamos con el hit mas cercano
+    } else { (h - discriminant.sqrt()) / a } // nos quedamos con el hit mas cercano
 }
 
 fn ray_color(r: &Ray) -> Color {
