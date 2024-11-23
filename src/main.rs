@@ -2,23 +2,29 @@ use crate::color::{write_color, Color};
 use crate::ray::Ray;
 use crate::vec3::{dot, unit_vector, Point3, Vec3};
 
-
-mod vec3;
 mod color;
-mod ray;
 mod hittable;
+mod ray;
 mod sphere;
+mod vec3;
 
 fn hit_sphere(center: &Point3, radius: f64, ray: &Ray) -> f64 {
+    // Vector desde el centro de la esfera al origen del rayo
     let oc: Vec3 = *center - *ray.origin();
+    // Coeficiente cuadrático de la ecuación cuadrática
     let a: f64 = ray.direction().length_squared();
+    // Mitad del coeficiente lineal
     let h: f64 = dot(*ray.direction(), oc);
+    // Término constante
     let c: f64 = oc.length_squared() - radius * radius;
+    // Calculamos el discriminante para saber si hay intersección
     let discriminant: f64 = h * h - a * c;
 
     return if discriminant < 0.0 {
-        -1.
-    } else { (h - discriminant.sqrt()) / a } // nos quedamos con el hit mas cercano
+        -1. // No hay intersección
+    } else {
+        (h - discriminant.sqrt()) / a
+    }; // nos quedamos con el hit mas cercano
 }
 
 fn ray_color(r: &Ray) -> Color {
@@ -29,19 +35,19 @@ fn ray_color(r: &Ray) -> Color {
     }
     let unit_direction = unit_vector(*r.direction());
     let a = 0.5 * (unit_direction.y() + 1.0);
-    return (1.0 - a) * Color::rgb(1.0, 1.0, 1.0)
-        + a * Color::rgb(0.5, 0.7, 1.0)
+    return (1.0 - a) * Color::rgb(1.0, 1.0, 1.0) + a * Color::rgb(0.5, 0.7, 1.0);
 }
 
 fn main() {
-
     // Image
     let aspect_ratio = 16.0 / 9.0;
     let image_width: usize = 400;
 
     // Calculate the image height, and ensure that it's at least 1.
     let mut image_height = (image_width as f64 / aspect_ratio) as usize;
-    if (image_height < 1) { image_height = 1 }
+    if (image_height < 1) {
+        image_height = 1
+    }
 
     // Camera
     let focal_length = 1.0;
@@ -58,14 +64,16 @@ fn main() {
     let pixel_delta_v = viewport_v / image_height as f64;
 
     // Calculate the location of the upper left pixel.
-    let viewport_upper_left = camera_center
-        - Vec3::new(0.0, 0.0, focal_length)
-        - (viewport_u / 2.0) - (viewport_v / 2.0);
+    let viewport_upper_left =
+        camera_center - Vec3::new(0.0, 0.0, focal_length) - (viewport_u / 2.0) - (viewport_v / 2.0);
     let pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
 
     // Render
     // Encabezado archivo .ppm
-    println!("{}", format!("P3\n{} {}{}", image_width, image_height, "\n255"));
+    println!(
+        "{}",
+        format!("P3\n{} {}{}", image_width, image_height, "\n255")
+    );
 
     for j in 0..image_height {
         eprintln!("{}", format!("\rScanlines remaining: {}", image_height - j));
