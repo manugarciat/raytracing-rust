@@ -16,7 +16,9 @@ This project reimplements the exercises and concepts using **Rust**, emphasizing
 ---
 
 ## 🌟 **Sample Output**
+
 Work in progress
+
 ![prueba_01.png](images/prueba_01.png)
 
 ---
