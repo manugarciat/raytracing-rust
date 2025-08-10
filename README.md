@@ -1,4 +1,5 @@
 # Ray Tracing in One Weekend (Rust Implementation)
+(Work in Progress)
 
 This repository contains my Rust implementation of the ray tracing exercises described in the book *[Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)* by **Peter Shirley**, **Trevor David Black**, and **Steve Hollasch**.
 
@@ -15,9 +16,8 @@ This project reimplements the exercises and concepts using **Rust**, emphasizing
 ---
 
 ## 🌟 **Sample Output**
-
-
-![hola.ppm](hola.ppm)
+Work in progress
+![prueba_01.png](images/prueba_01.png)
 
 ---
 
