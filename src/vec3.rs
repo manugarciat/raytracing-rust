@@ -39,6 +39,18 @@ impl std::ops::Neg for Vec3 {
         }
     }
 }
+
+// Negativiza el vector referencia
+impl std::ops::Neg for &Vec3 {
+    type Output = Vec3;
+
+    fn neg(self) -> Self::Output {
+        Vec3 {
+            e: [-self.e[0], -self.e[1], -self.e[2]],
+        }
+    }
+}
+
 impl Index<usize> for Vec3 {
     type Output = f64;
 
